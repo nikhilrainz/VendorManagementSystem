@@ -1,0 +1,51 @@
+<div>
+        <br>
+        <button class="btn btn-danger" style="float:right;margin-right:5%;width: 5%" type="submit" (click)="logout()">Logout</button>
+    </div>
+<div>
+    <h1 style="margin-top:5px" align="center">VENDOR LIST</h1>
+    <br>
+    <form class="form-inline" (submit)="searchVendors(searchString)">
+        <input class="form-control" [(ngModel)]="searchString" name=searchString type="search"
+            style="margin-left: 35%;" placeholder="Name/Location/Service" aria-label="Search">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <br>
+    <div style="width: 50%">
+        <button class="btn btn-primary" style="margin-left:28%" type="submit" (click)=addVendors()>Add New Vendor</button>
+        <button class="btn btn-primary" style="margin-left:1%" type="submit" (click)=viewAll()>View All</button>
+    </div>
+    
+    <span style="color:red;margin-left: 45%;font-size: 14pt;"><strong>{{message}}</strong></span>
+    <br>
+    <div class="container">
+        <table class="table table-striped table-hover">
+            <thead class="table-info">
+                <tr style=" border: 3px solid black">
+                    <th style="text-align: center;">Vendor ID</th>
+                    <th>Vendor Name</th>
+                    <th>Location</th>
+                    <th>Service</th>
+                    <th>Contact Person</th>
+                    <th>Mobile</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let vendor of vendorlist | paginate:{itemsPerPage:10,currentPage:p}"
+                    style=" border: 3px solid black">
+                    <td style="text-align: center;">{{vendor.vendorId}}</td>
+                    <td>{{vendor.vendorName}}</td>
+                    <td>{{vendor.location}}</td>
+                    <td>{{vendor.service}}</td>
+                    <td>{{vendor.contactName}}</td>
+                    <td>{{vendor.phone}}</td>
+                    <td><a (click)="editVendor(vendor.vendorId)"><img src="assets/edit.png"/></a>&nbsp;
+                        <a (click)=disableVendor(vendor.vendorId)><img src="assets/remove.png"/></a>
+                </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="p =$event"></pagination-controls>
+    </div>

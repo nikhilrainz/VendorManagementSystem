@@ -1,0 +1,125 @@
+
+    <div>
+        <br>
+        <button class="btn btn-primary" style="margin-left: 5%;width: 5%" type="submit" (click)="back()">Back</button>
+        <button class="btn btn-danger" style="float:right;margin-right:5%;width: 5%" type="submit" (click)="logout()">Logout</button>
+    </div>
+
+<div style="background-image:
+        url();
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100%;">
+
+    <br>
+    <b><label style="margin-left: 40%;font-size:30px;"> Vendor Registration Form</label></b>
+    <br>
+    <form autocomplete="off">
+        <div class="container">
+
+            <div class="form-group">
+                <input type="hidden" name="vendor.vendorId" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <strong><label for="vendorname">Vendor Name</label></strong>
+                <input type="text" [(ngModel)]="vendor.vendorName" class="form-control" id="vendorName"
+                    placeholder="Enter Vendor Name" #vendorname="ngModel" name="vendorName" pattern="[a-zA-Z ]{2,}"
+                    required />
+                <div class="validation-error" *ngIf="vendorname.invalid && vendorname.touched" style="color: red">
+                    *VendorName is required with min length 3
+                </div>
+            </div>
+
+            <div class="form-group">
+                <strong><label for="address">Address</label></strong>
+                <textarea class="form-control" [(ngModel)]="vendor.address" placeholder="Enter your Address" required
+                    name="address" #address="ngModel" required></textarea>
+                <div class="validation-error" *ngIf="address.invalid && address.touched" style="color: red">
+                    *Please enter your address
+                </div>
+            </div>
+
+            <label><strong>Location</strong></label><br>
+            <div class="form-group">
+                <select class="form-control text_length" [(ngModel)]="vendor.location" name="location"
+                    #location="ngModel" required>
+                    <div class="validation-error" *ngIf="location.invalid && location.touched" style="color: red">
+                        *Please select your Location
+                    </div>
+                    <option value="0" disabled>Select Location</option>
+                    <option>Trivandrum</option>
+                    <option>Banglore</option>
+                    <option>Chennai</option>
+                </select>
+            </div><br />
+
+            <div class="form-group">
+                <strong><label for="vendorname">Service</label></strong>
+                <input type="text" [(ngModel)]="vendor.service" class="form-control" id="service"
+                    placeholder="Enter Service Name" #servicename="ngModel" name="service" pattern="[a-zA-Z ]{2,}"
+                    required />
+                <div class="validation-error" *ngIf="servicename.invalid && servicename.touched" style="color: red">
+                    *Service Name is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <strong><label for="pincode">Pin Code</label></strong>
+                <input type="text" [(ngModel)]="vendor.pincode" class="form-control" id="pincode"
+                    placeholder="Enter Pincode" #pincode="ngModel" name="pincode" required />
+                <div class="validation-error" *ngIf="pincode.invalid && pincode.touched" style="color: red">
+                    *Pin Code is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <strong><label for="contactname">Contact Name</label></strong>
+                <input type="text" [(ngModel)]="vendor.contactName" class="form-control" id="contactName"
+                    placeholder="Enter Contact Name" #contactname="ngModel" name="contactName" pattern="[a-zA-Z ]{2,}"
+                    required />
+                <div class="validation-error" *ngIf="contactname.invalid && contactname.touched" style="color: red">
+                    *Contact Name is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <strong><label for="department">Department</label></strong>
+                <input type="text" [(ngModel)]="vendor.department" class="form-control" id="department"
+                    placeholder="Enter Department Name" #department="ngModel" name="department" pattern="[a-zA-Z ]{2,}"
+                    required />
+                <div class="validation-error" *ngIf="department.invalid && department.touched" style="color: red">
+                    *Department is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <strong><label for="email">Email</label></strong>
+                <input type="text" [(ngModel)]="vendor.email" class="form-control" name="email"
+                    placeholder="Enter Email Id" id="email" #vEmail="ngModel" required
+                    pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
+                <span class="help-block" *ngIf="vEmail.errors?.required && vEmail.touched" style="color: red">
+                    Email is required
+                </span>
+                <span class="help-block" *ngIf="vEmail.errors?.pattern && vEmail.touched" style="color: red">
+                    Email is Invalid
+                </span>
+
+            </div>
+            <div class="form-group">
+                <strong><label for="mobile">Mobile No</label></strong>
+                <input type="text" [(ngModel)]="vendor.phone" class="form-control" id="phone"
+                    placeholder="Enter Mobile Number with countrycode(91)" #phone="ngModel" name="phone" required
+                    pattern="[0-9]{13}" minlength="10" maxlength="12">
+            </div>
+            <span style="color:red;margin-left: 38%;font-size: 14pt;"><strong>{{errMessage}}</strong></span>
+
+            <div class="input">
+                <button (click)="saveVendors()" style="margin-left: 25%;width:50%" type="submit"
+                    class="btn btn-success">Save</button>
+            </div>
+        </div>
+    </form>
+
+    <br><br>
+</div>
